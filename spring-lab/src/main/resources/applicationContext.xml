@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+     Replaces all ${placeholders} with values from property files listed in "locations" property
+     E.g. postservice.url in apiaryPostServiceClient.
+    -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:postservice.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Managers -->
+    <!-- TASK: create PostManagerImpl bean with ID postManager -->
+
+    <!-- Web Service Beans -->
+    <bean id="apiaryPostServiceClient" class="cz.kiv.zcu.pia.core.posts.service.jaxrs.PostServiceClientJAXRS">
+        <constructor-arg name="baseUrl" value="${postservice.url}"/>
+    </bean>
+</beans>

@@ -1,0 +1,47 @@
+FORMAT: 1A
+
+# Spring Lab
+Posts API for Spring Lab Example created for educational purposes. The example has been used during ***Programming Internet Applications*** course
+at the Department of Computer Science, Faculty of Applied Sciences, University of West Bohemia, Czech Republic.
+
+# Group Posts
+
+## Posts Collection [/posts]
+### List all Posts [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 4, 
+          "content": "Good morning, we've talked the whole night through.",
+          "createdBy": "Duelling Cavalier"
+        }, {
+          "id": 1, 
+          "content": "And by the way, Monsieur Marius, I believe that I was a little bit in love with you.",
+          "createdBy": "Eponine"
+        }]
+
+## Comments Collection [/comments]
+### List all Comments [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, 
+          "comment": "To die for lack of love is horrible. The asphyxia of the soul.",
+          "createdBy": "Victor Hugo",
+          "post": "1"
+        }, {
+          "id": 2, 
+          "comment": "The future has several names. For the weak, it is impossible; for the fainthearted, it is unknown; but for the valiant, it is ideal.",
+          "createdBy": "Victor Hugo",
+          "post": "1"
+        },{
+          "id": 3, 
+          "comment": "Ah,what does this mean? It rains again! ...If this continues, I withdraw my subscription.",
+          "createdBy": "Little Gavroche",
+          "post": "1"
+        }, {
+          "id": 4, 
+          "comment": "I'm singin' in the rain.",
+          "createdBy": "Gene Kelly",
+          "post": 4
+        }]
