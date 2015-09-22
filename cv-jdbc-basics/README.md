@@ -9,6 +9,17 @@ This lab serves as introduction to Maven build manager and JDBC interface for da
 1. Study the following section on handling database connections.
 1. Study the section on passing arguments to queries.
 
+##Importing Maven Project into Your IDE
+
+While these tutorials may be slightly outdated due to new version releases,
+ the main course of action usually remains the same.
+
+[Import into Eclipse](https://books.sonatype.com/m2eclipse-book/reference/creating-sect-importing-projects.html)
+
+[Import into Netbeans](http://wiki.netbeans.org/MavenBestPractices#Open_existing_project)
+
+[Import into Intellij IDEA] (https://www.jetbrains.com/idea/help/importing-project-from-maven-model.html)
+
 ## Database Connection Management
 
 This section provides overview of possible ways to close database connections maintained by JDBC. [Many good reasons
