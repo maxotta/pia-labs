@@ -24,7 +24,7 @@ There are two mandatory dependencies in the *pom.xml* file:
 * hibernate-jpa-2.1-api - artifact with JPA interfaces ( **javax.persistence** package)
 * hibernate-entitymanager - entity manager implementation from [Hibernate ORM Project](http://hibernate.org/orm/).
 
-One optional dependency is [C3P0 Connetion Pooling Library](https://github.com/swaldman/c3p0). Remember the struggle
+One optional dependency is [C3P0 Connection Pooling Library](https://github.com/swaldman/c3p0). Remember the struggle
 with connection management from the previous lab?
 
 ### Configuration
@@ -52,14 +52,14 @@ of the table the entity is mapped to.
 
 #### Elementary Fields
 
-Elementary data types (such as int, double) and enums are mapped automatically as well as certain common classes such as Date,
+Primitive data types (such as int, double) and enums are mapped automatically as well as certain common classes such as Date,
 String. Yet in certain cases it might be necessary to specify additional information about the mapping. For this the following
 annotations are used:
 
 * ```@Basic``` - allows to specify whether the property is fetched lazily or whether it is optional. Use of the annotation
                 is optional, if not provided, default settings are used (fetch = EAGER, optional = true)
 * ```@Temporal``` - used to specify type of information persisted in Date attribute - DATE, TIME, TIMESTAMP.
-* ```@Enumerated``` - used to decide whether enum type v alues are stored as ordinal number or string representation of the value.
+* ```@Enumerated``` - used to decide whether enum type values are stored as ordinal number or string representation of the value.
 * ```@Column``` - can be used in conjuction with any of the previously mentioned annotations to provide additional information about the 
                   mapped column - is it nullable, updatable, etc.
                   
