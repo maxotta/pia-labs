@@ -4,14 +4,8 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
@@ -66,9 +60,7 @@ public class User implements IEntity<String> {
         this.password = password;
     }
 
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user", referencedColumnName = "username"),
-    inverseJoinColumns = @JoinColumn(name= "role", referencedColumnName = "id"))
+    @Transient
     public Set<Role> getRoles() {
         return roles;
     }
@@ -77,7 +69,7 @@ public class User implements IEntity<String> {
        this.roles = roles;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Transient
     public Address getAddress() {
         return address;
     }
