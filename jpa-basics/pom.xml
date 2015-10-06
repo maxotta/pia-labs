@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cz.kiv.zcu.pia</groupId>
     <artifactId>jpa-basics</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <name>KIV/PIA Labs Base Project</name>
     <url>https://courseware.zcu.cz/portal/studium/courseware/kiv/pia</url>
