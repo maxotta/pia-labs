@@ -9,6 +9,7 @@ import org.danekja.edu.pia.dao.RoleDao;
 import org.danekja.edu.pia.dao.UserDao;
 import org.danekja.edu.pia.domain.AccountState;
 import org.danekja.edu.pia.domain.Address;
+import org.danekja.edu.pia.domain.Email;
 import org.danekja.edu.pia.domain.Role;
 import org.danekja.edu.pia.domain.User;
 
@@ -212,6 +213,19 @@ public class JpaExamples {
         //put breakpoint here and check db
         beginTransaction();
         userDao.delete(u.getPK());
+        commitTransaction();
+    }
+
+    /**
+     * Demonstrates how embedded entities are stored within the association owner's table.
+     */
+    public void tryEmbedding() {
+        User u = new User("embeddinguser", "1234", new Date(), AccountState.CREATED);
+        Email e = new Email("personal", "myemail@email.em");
+        u.setEmail(e);
+
+        beginTransaction();
+        userDao.create(u);
         commitTransaction();
     }
 

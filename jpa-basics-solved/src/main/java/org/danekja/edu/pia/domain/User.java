@@ -22,6 +22,7 @@ public class User implements IEntity<String> {
     private AccountState state;
 
     private Address address;
+    private Email email;
 
     private Set<Role> roles;
 
@@ -72,6 +73,15 @@ public class User implements IEntity<String> {
     @Transient
     public Address getAddress() {
         return address;
+    }
+
+    @Transient
+    public Email getEmail() {
+        return email;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
     }
 
     public void setAddress(Address address) {
