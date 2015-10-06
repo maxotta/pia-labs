@@ -22,4 +22,14 @@ public class UserDaoJpa extends GenericDaoJpa<User, String> implements UserDao {
         super(em, User.class);
     }
 
+    @Override
+    public User create(User user) {
+        entityManager.persist(user);
+        return user;
+    }
+
+    @Override
+    public User save(User instance) {
+        return entityManager.merge(instance);
+    }
 }

@@ -22,4 +22,8 @@ public class UserDaoJpa extends GenericDaoJpa<User, String> implements UserDao {
         super(em, User.class);
     }
 
+    @Override
+    public User create(User user) {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
 }

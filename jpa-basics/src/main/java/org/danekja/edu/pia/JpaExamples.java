@@ -65,15 +65,32 @@ public class JpaExamples {
     /**
      * Attempts to store two different user instances having the same username into the database.
      *
-     * What will happen?
+     * What will happen when save done via merge?
+     */
+    public void tryUsernameKindaFail() {
+        User u1 = new User("originalusernamekindafail", "1234", new Date(), AccountState.CREATED);
+        User u2 = new User("originalusernamekindafail", "4321", new Date(), AccountState.ACTIVE);
+
+        beginTransaction();
+        userDao.save(u1);
+        userDao.save(u2);
+        commitTransaction();
+
+        //what just happened?
+    }
+
+    /**
+     * Attempts to store two different user instances having the same username into the database.
+     *
+     * What will happen when save done via persist?
      */
     public void tryUsernameFail() {
         User u1 = new User("originalusernamefail", "1234", new Date(), AccountState.CREATED);
         User u2 = new User("originalusernamefail", "4321", new Date(), AccountState.ACTIVE);
 
         beginTransaction();
-        userDao.save(u1);
-        userDao.save(u2);
+        userDao.create(u1);
+        userDao.create(u2);
         commitTransaction();
 
         //what just happened?

@@ -11,4 +11,6 @@ import org.danekja.edu.pia.domain.User;
  */
 public interface UserDao extends GenericDao<User, String> {
 
+    User create(User user);
+
 }
