@@ -160,12 +160,40 @@ public class JpaExamples {
      * @throws org.hibernate.LazyInitializationException
      */
     public void tryLazyFail() {
+        User u1 = new User("rolelazytestuserfail", "1234", new Date(), AccountState.CREATED);
+
+        Role r1 = new Role("USER");
+        Role r2 = new Role("ADMIN");
+
+        //create role objects
         beginTransaction();
-        User u1 = userDao.findOne("roletestuser");
+        r1 = roleDao.save(r1);
+        r2 = roleDao.save(r2);
+        commitTransaction();
+
+        //create new user
+        beginTransaction();
+        userDao.save(u1);
+        commitTransaction();
+
+        //add roles to the user
+        beginTransaction();
+        u1 = userDao.findOne(u1.getPK());
+        u1.getRoles().add(r1);
+        u1.getRoles().add(r2);
+        userDao.save(u1);
+        commitTransaction();
+
+        em.clear();
+
+        //NOW the important part starts
+
+        beginTransaction();
+        u1 = userDao.findOne("rolelazytestuserfail");
         rollbackTransaction();
 
         for (Role r : u1.getRoles()) {
-            System.out.println(r.getName());
+            System.out.println("Role: " + r.getName());
         }
     }
 
@@ -174,8 +202,36 @@ public class JpaExamples {
      * load DAO methods.
      */
     public void tryLazySucc() {
+        User u1 = new User("rolelazytestusersucc", "1234", new Date(), AccountState.CREATED);
+
+        Role r1 = new Role("USER");
+        Role r2 = new Role("ADMIN");
+
+        //create role objects
         beginTransaction();
-        Set<Role> roles = roleDao.findByUser("roletestuser");
+        r1 = roleDao.save(r1);
+        r2 = roleDao.save(r2);
+        commitTransaction();
+
+        //create new user
+        beginTransaction();
+        userDao.save(u1);
+        commitTransaction();
+
+        //add roles to the user
+        beginTransaction();
+        u1 = userDao.findOne(u1.getPK());
+        u1.getRoles().add(r1);
+        u1.getRoles().add(r2);
+        userDao.save(u1);
+        commitTransaction();
+
+        em.clear();
+
+        //NOW the important part starts
+
+        beginTransaction();
+        Set<Role> roles = roleDao.findByUser("rolelazytestusersucc");
         rollbackTransaction();
 
         for (Role r : roles) {

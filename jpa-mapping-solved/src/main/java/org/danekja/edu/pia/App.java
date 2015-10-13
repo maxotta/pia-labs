@@ -23,7 +23,7 @@ public class App {
         JpaExamples examples = new JpaExamples(em, new UserDaoJpa(em), new RoleDaoJpa(em));
 
         //run example methods
-        examples.tryLazySucc();
+        examples.tryLazyFail();
 
         //finish up
         em.close();
