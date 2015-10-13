@@ -12,7 +12,7 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pialabs"/>
 
             <!-- Hibernate-specific configuration -->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
             <property name="hibernate.validator.apply_to_ddl" value="true" />
 
