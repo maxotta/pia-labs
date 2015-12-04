@@ -20,25 +20,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cz.kiv.zcu.pia</groupId>
+    <groupId>org.danekja.edu.pia</groupId>
     <artifactId>spring-lab</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>PIA Last Lab</name>
-    <description>Spring and Wicket example for KIV/PIA</description>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+    <version>2.0-SNAPSHOT</version>
+    <name>PIA Tech Lab</name>
+    <description>Spring, JAX-RS, SLF4J and Wicket example for KIV/PIA</description>
     <properties>
         <jackson.version>2.4.0</jackson.version>
         <jersey.version>2.13</jersey.version>
         <jetty.version>7.6.13.v20130916</jetty.version>
         <mockito.version>1.9.5</mockito.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j.version>1.6.4</slf4j.version>
         <spring.version>4.1.3.RELEASE</spring.version>
         <wicket.version>6.18.0</wicket.version>
         <!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
@@ -50,19 +44,18 @@
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
             <version>${wicket.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-spring</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-        <!-- OPTIONAL DEPENDENCY
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-extensions</artifactId>
-            <version>${wicket.version}</version>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -109,13 +102,13 @@
         <!-- LOGGING DEPENDENCIES - LOG4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.4</version>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!--  DEPENDENCIES FOR TESTING -->

@@ -4,14 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
        <!-- Test Managers -->
-       <bean id="postManagerTestStub" class="cz.kiv.zcu.pia.core.posts.manager.PostManagerImpl">
-              <property name="postServiceClient" ref="postServiceClientStub"/>
+       <bean id="postManagerTestStub" class="org.danekja.edu.pia.core.posts.manager.DefaultPostManager">
+              <constructor-arg name="postDao" ref="postServiceClientStub"/>
        </bean>
 
 
 
        <!-- Stubs -->
-       <bean id="postServiceClientStub" class="cz.kiv.zcu.pia.core.posts.PostServiceClientStub"/>
+       <bean id="postServiceClientStub" class="org.danekja.edu.pia.core.posts.PostDaoStub"/>
 
        <!-- Mocks -->
        <!--

@@ -13,32 +13,23 @@ This work is licensed under the Creative Commons license BY-NC-SA.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Excercises for Programming of Web Applications</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://daneka.org" property="cc:attributionName" rel="cc:attributionURL">Jakub Danek</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
-
-## Theory
-
-* Dependency Injection
-    * Nice description at [Wikipedia](http://en.wikipedia.org/wiki/Dependency_injection)
-    * Check especially the examples section!
-* Inversion of Control
-    * TBD
-
 ## Project Structure
 Application parts are wired together using Spring framework (see ``applicationContext.xml`` and ``applicationContext-test.xml`` in
 ``main/resources`` and ``/test/resources`` folders).
 
 * ``core.posts.domain`` contains domain objects (inner representation of data
 * ``core.posts.manage`` contains manager classes for the data (application logic)
-* ``core.posts.service`` contains client interface for connection to a web service and data retrieval (NOTE, this is basically a DAO)
-* ``core.posts.service.dto`` contains Data Transfer Objects used for (De)serializaiton of the data retreived via web service. While in this example
-  they have the same structure as domain objects, in the real world they can represent only a subset of a domain class or even have a completelly different
+* ``core.posts.dao`` contains client interface for data retrieval
+* ``core.posts.dao.jaxrs`` contains Data Transfer Objects used for (De)serializaiton of the data retreived via web service. While in this example
+  they have the same structure as domain objects, in the real world they can represent only a subset of a domain class or even have a completely different
   structure
 * ``webapp.components`` contains custom wicket components - components should contain main part of display logic
 * ``webapp.pages`` contains wicket pages - pages should be used for parameter parsing and basic layout (dont make large pages, decompose into components instead)
 
 
 ### Tests
-The example contains two implementations of the same test class. One uses own stub implementation of PostServiceClient,
-the other uses Mockito framework to mock the PostServiceClient instead.
+The example contains two implementations of the same test class. One uses own stub implementation of PostDao,
+the other uses Mockito framework to mock the PostDao instead.
 
 ### Commands
 
@@ -59,12 +50,13 @@ Your API blueprint can be automatically linked to the project repository at GitH
 1. Get familiar with the project
     * Spring configuration, application context
     * Unit tests - stubs, mocks
+    * Logger configuration - slf4j dependencies in pom.xml, log4j.properties, logger instance in PostDaoJAXRS
+    * JAX-RS configuration - jaxrs and jackson dependencies in pom.xml, PostDaoJAXRS implementation
 1. Try to start the application and go to ``/posts`` page.
     * If fails... :)
 2. Define PostManager bean and try again.
 3. Finish the functionality - comments are not displayed for their quotes at the moment.
-    * Implement remaining methods of the provided PostServiceClient interface.
-4. Write tests to ensure your implementation is correct.
-    * try using both mocks and own stubs
-5. Implement CommentList wicket component.
+    * Implement remaining methods of the provided PostDao interface in the PostDaoJAXRS class.
+    * implement missing part of DefaultPostManager so that comments get joined to their posts.
+4. Run tests to ensure your implementation is correct.
 4. Ask questions
