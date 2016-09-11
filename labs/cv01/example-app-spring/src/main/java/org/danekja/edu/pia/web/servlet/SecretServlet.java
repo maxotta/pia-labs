@@ -3,7 +3,7 @@ package org.danekja.edu.pia.web.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jakub Danek
  */
-public class SecretServlet extends HttpServlet {
+@WebServlet("/secret/vip")
+public class SecretServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

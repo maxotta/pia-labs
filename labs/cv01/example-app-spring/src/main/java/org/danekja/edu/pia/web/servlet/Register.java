@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.danekja.edu.pia.domain.User;
 import org.danekja.edu.pia.domain.UserValidationException;
 import org.danekja.edu.pia.manager.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Servlet handling user registration requests.
@@ -19,7 +20,8 @@ import org.danekja.edu.pia.manager.UserManager;
  *
  * @author Jakub Danek
  */
-public class Register extends HttpServlet {
+@WebServlet("/register")
+public class Register extends AbstractServlet {
 
     private static final String USERNAME_PARAMETER = "username";
     private static final String PASSWORD_PARAMETER = "password";
@@ -29,13 +31,14 @@ public class Register extends HttpServlet {
 
     private UserManager userManager;
 
-    public Register(UserManager userManager) {
+    @Autowired
+    public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class Register extends HttpServlet {
 
         try {
             userManager.register(new User(username, password));
-            resp.sendRedirect("/");  //not perfect, user should get a message registration was successful!
+            resp.sendRedirect("");  //not perfect, user should get a message registration was successful!
         } catch (UserValidationException e) {
             errorDispatch(e.getMessage(), req, resp);
         }
@@ -59,6 +62,6 @@ public class Register extends HttpServlet {
 
     private void errorDispatch(String err, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute(ERROR_ATTRIBUTE, err);
-        req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(req, resp);
     }
 }

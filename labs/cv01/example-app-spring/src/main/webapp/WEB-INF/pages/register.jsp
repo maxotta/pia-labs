@@ -17,8 +17,8 @@
      Error: ${requestScope.err}
 </c:if>
 
-<h1>Normal registration</h1>
-<form action="/register" method="post">
+<h1>Rregistration</h1>
+<form action="register" method="post">
     <label for="username">Username:&nbsp;</label>
     <input type="text" id="username" name="username">
     <label for="pwd">Password:&nbsp;</label>
@@ -28,15 +28,5 @@
     <input type="submit" value="Register">
 </form>
 
-<h1>Spring registration</h1>
-<form action="/spring/register" method="post">
-    <label for="username">Username:&nbsp;</label>
-    <input type="text" id="username" name="username">
-    <label for="pwd">Password:&nbsp;</label>
-    <input type="password" id="pwd" name="password">
-    <label for="confirmpwd">Confirm Password:&nbsp;</label>
-    <input type="password" id="confirmpwd" name="confirmPwd">
-    <input type="submit" value="Register">
-</form>
 </body>
 </html>

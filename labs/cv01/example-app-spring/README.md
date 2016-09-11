@@ -1,8 +1,7 @@
-# KIV/PIA Maven & JDBC Basics Lab 
+# KIV/PIA Labs Example Application Project
 
-This lab serves as introduction to Maven build manager and JDBC interface for data persistence.
-
-## Tasks
+Spring implementation of a simple web application. Demonstrates the applications student's should be
+able to create after passing the course.
 
 1. Get acquainted with contents of the pom.xml file.
 1. Build the project using ```mvn install``` and examine contents of the created archive.
@@ -178,6 +177,8 @@ There are [several good reasons](https://www.google.cz/search?q=why+use+prepared
 1. How would you solve the parameter passing when using *try-with-resource*?
 
 ## License
+
+Base of the JPA setup has been created by Karel Zibar during one of the courses at the University.
 
 This work is licensed under the Creative Commons license BY-NC-SA.
 

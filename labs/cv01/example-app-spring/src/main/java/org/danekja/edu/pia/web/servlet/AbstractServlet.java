@@ -1,4 +1,4 @@
-package org.danekja.edu.pia.web.servlet.spring;
+package org.danekja.edu.pia.web.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

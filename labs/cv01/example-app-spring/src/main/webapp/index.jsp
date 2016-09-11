@@ -12,17 +12,8 @@
     </p>
 </c:if>
 
-<h1>Normal login</h1>
-<form action="/login" method="post">
-    <label for="username">Login:&nbsp;</label>
-    <input type="text" id="username" name="username">
-    <label for="pwd">Password:&nbsp;</label>
-    <input type="password" id="pwd" name="password">
-    <input type="submit" value="Login">
-</form>
-
-<h1>Spring login</h1>
-<form action="/spring/login" method="post">
+<h1>Login</h1>
+<form action="login" method="post">
     <label for="username">Login:&nbsp;</label>
     <input type="text" id="username" name="username">
     <label for="pwd">Password:&nbsp;</label>
@@ -31,12 +22,9 @@
 </form>
 
 <p>
-    <a href="/register">Register</a>
+    <a href="register">Register</a>
 </p>
 
-<p>
-    <a href="/spring/register">Spring Register</a>
-</p>
 
 </body>
 </html>

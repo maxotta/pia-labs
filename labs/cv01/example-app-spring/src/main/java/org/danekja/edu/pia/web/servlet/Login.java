@@ -3,11 +3,12 @@ package org.danekja.edu.pia.web.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.danekja.edu.pia.web.auth.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Servlet handling user login requests
@@ -16,7 +17,8 @@ import org.danekja.edu.pia.web.auth.AuthenticationService;
  *
  * @author Jakub Danek
  */
-public class Login extends HttpServlet {
+@WebServlet("/login")
+public class Login extends AbstractServlet {
 
     private static final String USERNAME_PARAMETER = "username";
     private static final String PASSWORD_PARAMETER = "password";
@@ -25,7 +27,8 @@ public class Login extends HttpServlet {
 
     private AuthenticationService authService;
 
-    public Login(AuthenticationService authService) {
+    @Autowired
+    public void setAuthService(AuthenticationService authService) {
         this.authService = authService;
     }
 
@@ -36,7 +39,7 @@ public class Login extends HttpServlet {
 
         boolean authenticated = authService.authenticate(req.getSession(), username, password);
         if(authenticated) {
-            resp.sendRedirect("/secret/vip");
+            resp.sendRedirect("secret/vip");
         } else {
             req.setAttribute(ERR_ATTRIBUTE, "Invalid credentials!");
             req.getRequestDispatcher("/").forward(req, resp);
