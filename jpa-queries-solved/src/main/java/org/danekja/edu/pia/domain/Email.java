@@ -19,7 +19,6 @@ public class Email {
     public Email(String description, String email) {
         this.description = description;
         this.email = email;
-        this.has
     }
 
     public String getDescription() {
