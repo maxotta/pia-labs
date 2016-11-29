@@ -55,7 +55,7 @@ public class GenericDaoJpa<E extends BaseEntity<PK>, PK extends Serializable> im
 
     @Override
     public List<E> findAll() {
-        return entityManager.createQuery("FROM " + persistedClass.getSimpleName(), persistedClass)
+        return entityManager.createQuery("FROM User u JOIN FETCH u.cinfo", persistedClass)
                 //.setMaxResults(100) //pagination is useful
                 .getResultList();
     }

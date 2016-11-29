@@ -1,14 +1,29 @@
-# KIV/PIA - JPA Complete Solution
+# KIV/PIA - JPA Optimization Issues
 
 This is project with resolved tasks from the JPA Labs. See the jpa-basics module for blank lab project.
 
-This lab covers:
- 
-* basic set-up of JPA persistence context backed by Hibernate provider;
-* elementary mapping of entity classes to database tables
-* association mapping, inheritance mapping
-* JPQL
-* Criteria API
+## Notes
+
+## Profiler
+
+[XRebel](https://zeroturnaround.com/software/xrebel/) - commercial, easy to use...
+
+### Enable Logging
+Add the following to the persistence unit configuration.
+```
+    <property name="hibernate.show_sql" value="true"/>
+    <property name="hibernate.format_sql" value="true"/>
+```
+
+## How-To
+
+1. Create empty database in the datastore you wish to use (configuration is in the persitence.xml file)
+2. Uncomment code in the **org.danekja.edu.pia.web.listener.StartupListener** to generate test data.
+3. Start the application using **tomcat7:run-war** command
+4. Stop the application
+4. Comment out the code you uncommented in the item **2.**
+4. Try out various mapping options (mostly commented out throughout the code) and see 
+how they impact the performance.
                   
 ## License
 

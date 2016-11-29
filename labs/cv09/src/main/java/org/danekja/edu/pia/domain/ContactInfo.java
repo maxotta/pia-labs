@@ -6,6 +6,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  * Date: 11.10.15
@@ -13,7 +18,7 @@ import javax.persistence.OneToMany;
  * @author Jakub Danek
  */
 @Entity
-//@BatchSize(size = 1000) //all entities should have this
+@BatchSize(size = 1000) //all entities should have this
 public class ContactInfo extends BaseEntity<Long> {
 
     private String title;
@@ -22,7 +27,7 @@ public class ContactInfo extends BaseEntity<Long> {
      *  Better remove this, inverse relations of one-to-one are hard
      *  to make lazy.
      */
-    /*private User user;*/
+    private User user;
 
     private Set<Address> addresses;
     private Set<Email> emails;
@@ -48,18 +53,10 @@ public class ContactInfo extends BaseEntity<Long> {
      *  Better remove this, inverse relations of one-to-one are hard
      *  to make lazy.
      */
-/*    @OneToOne(mappedBy = "cinfo")
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }*/
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
+    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
     //@Fetch(FetchMode.SUBSELECT) //makes things better by creating lower cartesian product, still terrible, produces a lot of queries
-    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
     public Set<Address> getAddresses() {
         return addresses;
     }
@@ -68,9 +65,9 @@ public class ContactInfo extends BaseEntity<Long> {
         this.addresses = addresses;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
+    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
     //@Fetch(FetchMode.SUBSELECT) //makes things better by creating lower cartesian product, still terrible, produces a lot of queries
-    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
     public Set<Email> getEmails() {
         return emails;
     }
@@ -79,9 +76,9 @@ public class ContactInfo extends BaseEntity<Long> {
         this.emails = emails;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
+    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //terrible, creates huge cartesian product
     //@Fetch(FetchMode.SUBSELECT) //makes things better by creating lower cartesian product, still terrible, produces a lot of queries
-    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //final config, lazy is default
     public Set<Note> getNotes() {
         return notes;
     }
