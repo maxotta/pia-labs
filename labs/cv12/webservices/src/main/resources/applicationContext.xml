@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="org.danekja.edu.pia.**.domain"/>
+
+    <!--
+     Replaces all ${placeholders} with values from property files listed in "locations" property
+     E.g. postservice.url in apiaryPostServiceClient.
+    -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:postservice.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Managers -->
+    <!-- TASK: create PostManagerImpl bean with ID postManager -->
+    <bean id="postManager" class="org.danekja.edu.pia.core.posts.manager.DefaultPostManager">
+        <constructor-arg name="postDao" ref="apiaryPostServiceClient"/>
+    </bean>
+
+    <!-- Web Service Beans -->
+    <bean id="apiaryPostServiceClient" class="org.danekja.edu.pia.core.posts.dao.jaxrs.PostDaoJAXRS">
+        <constructor-arg name="baseUrl" value="${postservice.url}"/>
+    </bean>
+
+    <bean id="postService" class="org.danekja.edu.pia.core.posts.service.PostServiceJAXRS">
+        <constructor-arg name="postManager" ref="postManager"/>
+    </bean>
+
+</beans>
