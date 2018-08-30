@@ -1,0 +1,115 @@
+//VERSION 1: Simple user activation scenario
+class User {
+
+  private boolean activated;
+  private Instant dateTimeActivated;
+
+  public boolean getActivated() {
+    return this.activated;
+  }
+
+  public void setActivated(boolean activated) {
+    this.activated = activated;
+  }
+
+  public Instant getDateTimeActivated() {
+    return this.dateTimeActivated;
+  }
+
+  public void setDateTimeActivated(Instant dateTimeActivated) {
+    this.dateTimeActivated = dateTimeActivated;
+  }
+}
+
+
+User activateUser(User u) {
+  u.setActivated(true);
+  u.setDateTimeActivated(Instant.now());
+
+  u = update(u); //update database
+
+  return u;
+}
+
+//This is a test method for verification that our activateUser method works
+//as planned
+void testActivateUser() {
+  User u = new User();
+
+  //check user is not active - need to make multiple calls to find that out
+  assertFalse(u.getActivated());
+  assertTrue(u.getDateTimeActivated == null);
+
+  u = activateUser(u)
+
+  //check user is active - need to make multiple calls to find that out
+  assertTrue(u.getActivated());
+  assertTrue(u.getDateTimeActivated != null);
+}
+
+//######################################################################
+
+//VERSION 2: Updated class User - active boolean replaced with state enum
+
+//######################################################################
+class User {
+
+  public enum State {
+    REGISTERED,
+    ACTIVE,
+    DELETED;
+  }
+
+  private State state;
+  private Instant dateTimeActivated;
+
+  public User() {
+    this(State.REGISTERED);
+  }
+
+  public User(State state) {
+    this.state = state;
+  }
+
+  public State getState() {
+    return this.state;
+  }
+
+  public void setState(State state) {
+    this.state = state;
+  }
+
+  public Instant getDateTimeActivated() {
+    return this.dateTimeActivated;
+  }
+
+  public void setDateTimeActivated(Instant dateTimeActivated) {
+    this.dateTimeActivated = dateTimeActivated;
+  }
+}
+
+
+User activateUser(User u) {
+  u.setState(User.ACTIVE);  //CHANGED
+  u.setDateTimeActivated(Instant.now());
+
+  u = update(u); //update database
+
+  return u;
+}
+
+//This is a test method for verification that our activateUser method works
+//as planned
+void testActivateUser() {
+  User u = new User();
+
+  //check user is not active - need to make multiple calls to find that out
+  assertTrue(u.getState() == State.REGISTERED); //CHANGED
+  assertTrue(u.getDateTimeActivated == null);
+
+  u = activateUser(u)
+
+  //check user is active - need to make multiple calls to find that out
+  assertTrue(u.getState() == State.ACTIVE); //CHANGED
+  assertTrue(u.getDateTimeActivated != null);
+}

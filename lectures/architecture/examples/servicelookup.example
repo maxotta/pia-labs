@@ -1,0 +1,32 @@
+# Spring with XML configuration
+## Data model
+
+interface DataDao {}
+
+class DataManager implements ApplicationContextAware {
+  private ApplicationContext ac;
+
+  private DataDao dao;
+
+  public DataManager() {
+    this.dao = ac.getBean("dao");
+  }
+}
+
+## XML configuration
+<bean id="dataManager" class="DataManager"/>
+
+<bean id="dao" class="DataDaoJDBC">
+  ... constructor args (e.g. db connection parameters)
+</bean>
+
+<bean id="fileDao" class="DataDaoFile">
+ ... constructor args (e.g. directory)
+</bean>
+
+// to change the DAO used, we need to rename the JDBC "dao" to something else
+// and rename "fileDao" to "dao".
+
+// also with this pattern it would be comparatively more difficult create multiple
+// instances of the DataManager with different dependencies (without using DI
+// e.g. by passing the dao id as string by constructor)

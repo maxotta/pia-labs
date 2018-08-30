@@ -1,0 +1,23 @@
+//This example is taken from Martin Fowler's article on Inversion of Control
+//https://martinfowler.com/bliki/InversionOfControl.html
+
+#ruby - command line interface, our code is in control
+puts 'What is your name?'     # print line
+name = gets                   # wait for user input and read it
+process_name(name)            # do some work
+puts 'What is your quest?'    # print line
+quest = gets                  # wait for user input and read it
+process_quest(quest)          # do some work
+
+# windowed application - our code is not in control
+require 'tk'
+root = TkRoot.new()
+name_label = TkLabel.new() {text "What is Your Name?"}
+name_label.pack
+name = TkEntry.new(root).pack
+name.bind("FocusOut") {process_name(name)}                  # we dont control directly when this is called
+quest_label = TkLabel.new() {text "What is Your Quest?"}
+quest_label.pack
+quest = TkEntry.new(root).pack
+quest.bind("FocusOut") {process_quest(quest)}               # we dont control directly when this is called
+Tk.mainloop()

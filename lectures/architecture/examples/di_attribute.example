@@ -1,0 +1,24 @@
+# Spring with annotation configuration
+## Data model
+
+interface DataDao {}
+
+@Repository("jdbcDao")
+class DataDaoJDBC implements DataDao {}
+
+@Repository("fileDao")
+class DataDaoFile implements DataDao {}
+
+@Service("dataManager")
+class DataManager {
+
+  @Autowired
+  @Qualifier("jdbcDao")
+  private DataDao dao;
+
+  # no explicit dependencies shown by class interface
+  # -> do not use this, if you can avoid it
+}
+
+// we can easily replace the dao used inside manager class from database to fileDao
+// by changing the value of annotation

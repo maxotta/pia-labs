@@ -1,0 +1,30 @@
+# Spring with XML configuration
+## Data model
+
+interface DataDao {}
+
+class DataManager {
+  private DataDao dao;
+
+  public DataManager(DataDao dao) {
+    this.dao = dao;
+  }
+}
+
+## XML configuration
+<bean id="dataManager" class="DataManager">
+  <constructor-arg name="dao" ref="jdbcDao"/>
+</bean>
+
+<bean id="jdbcDao" class="DataDaoJDBC">
+  ... constructor args (e.g. db connection parameters)
+</bean>
+
+<bean id="fileDao" class="DataDaoFile">
+ ... constructor args (e.g. directory)
+</bean>
+
+// we can easily replace the dao used inside manager class from database to fileDao
+// by changing one value in the configuration
+// or we could define two data manager beans (instances), one saving data to database
+// and one to file

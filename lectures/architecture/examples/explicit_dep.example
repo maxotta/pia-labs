@@ -1,0 +1,43 @@
+/*
+ * Two issues with this class:
+ * 1. Cant change date format.
+ * 2. Cant change to where the date gets printed.
+ */
+class BadDatePrinter {
+
+  private DateFormat df;
+
+  public BadDatePrinter() {
+    df = new SimpleDateFormatter("yymmdd");
+  }
+
+  public String printDate(Instant date) {
+    System.out.println(df.format(date));
+  }
+
+}
+
+
+class BetterDatePrinter {
+
+  private DateFormat df;
+  private PrintStream out;
+
+  //now clients of this class can provide which date format and output stream
+  //they want to use
+  public BadDatePrinter(DateFormat df, OutputStream os) {
+    this.df = df;
+    this.out = new PrintStream(os, true);
+  }
+
+  //of course it is still ok to provide defaults
+  public BadDatePrinter() {
+    this.df = new SimpleDateFormatter("yymmdd");
+    this.out = System.out;
+  }
+
+  public String printDate(Instant date) {
+    out.println(df.format(date));
+  }
+
+}

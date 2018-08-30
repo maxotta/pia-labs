@@ -1,0 +1,96 @@
+//VERSION 1: Simple user activation scenario
+class User {
+
+  private boolean activated;
+  private Instant dateTimeActivated;
+
+  public boolean isActive() {
+    return activated && this.dateTimeActivated != null;
+  }
+
+  public void activate() {
+    this.activated = true;
+    this.dateTimeActivated = Instant.now();
+  }
+
+}
+
+User activateUser(User u) {
+  u.activate();
+
+  u = update(u); //update database
+
+  return u;
+}
+
+//This is a test method for verification that our activateUser method works
+//as planned
+void testActivateUser() {
+  User u = new User();
+
+  //check user is not active
+  assertFalse(u.isActive());
+
+  u = activateUser(u)
+
+  //check user is active
+  assertTrue(u.isActive());
+}
+
+//######################################################################
+
+//VERSION 2: Updated class User - active boolean replaced with state enum
+
+//######################################################################
+class User {
+
+  public enum State {
+    REGISTERED,
+    ACTIVE,
+    DELETED;
+  }
+
+  private State state;
+  private Instant dateTimeActivated;
+
+  public User() {
+    this(State.REGISTERED);
+  }
+
+  public User(State state) {
+    this.state = state;
+  }
+
+  public boolean isActive() {
+    return this.state == State.ACTIVE && this.dateTimeActivated != null;
+  }
+
+  public void activate() {
+    this.state = State.ACTIVE;
+    this.dateTimeActivated = Instant.now();
+  }
+}
+
+// No changes below...
+
+User activateUser(User u) {
+  u.activate();
+
+  u = update(u); //update database
+
+  return u;
+}
+
+//This is a test method for verification that our activateUser method works
+//as planned
+void testActivateUser() {
+  User u = new User();
+
+  //check user is not active
+  assertFalse(u.isActive());
+
+  u = activateUser(u)
+
+  //check user is active
+  assertTrue(u.isActive());
+}

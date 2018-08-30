@@ -1,0 +1,29 @@
+/**
+ * One function handles: email validation, age validation and user registration
+ *
+ * Hard to read, difficult to test separately, if we need those validations elsewhere
+ * we need to duplicate code.
+ */
+void processRegistration(String email, String age) {
+  //validate email address format with regexp matcher
+  String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+  Pattern p = Pattern.compile(ePattern);
+  Matcher m = p.matcher(email);
+  if (!m.matches()) {
+    throw new UserValidationException("Email address is not in correct format.");
+  }
+
+  //validate age format
+  try {
+    int ageInt = Integer.parseInt(age);
+
+    if(ageInt < 0) {
+      throw new UserValidationException(age + " cannot be lower than 0!");
+    }
+
+  } catch (NumberFormatException e) {
+    throw new UserValidationException(age + " is not a valid number!");
+  }
+
+  //registration steps...
+}
