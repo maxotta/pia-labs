@@ -1,0 +1,36 @@
+DROP DATABASE IF EXISTS `pia_security`;
+CREATE DATABASE `pia_security`;
+USE `pia_security`;
+
+CREATE TABLE IF NOT EXISTS `pia_example_01` (
+	`username` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `pia_example_01` VALUES 
+	('testuser1', password('pwd1')),
+	('testuser2', password('pwd2'));
+
+
+######################
+QUERY: select * from pia_example_01 where username = :user AND password = PASSWORD(:pwd);
+
+
+# Correct password:
+user='testuser1'
+pwd='pwd1'
+
+select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('pwd1');
+
+# Incorrect password:
+user='testuser1'
+pwd='pwd1'
+
+select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('pwd2');
+
+# SQL Injection
+user='testuser1'
+pwd='0') OR ABS(1)
+
+select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('0') OR ABS(1);
