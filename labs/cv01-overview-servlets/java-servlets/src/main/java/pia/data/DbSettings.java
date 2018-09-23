@@ -21,4 +21,24 @@ public class DbSettings {
 	public String getConnectionUrl() {
 		return MessageFormat.format("jdbc:mysql://{0}:{1,number,#}/{2}?characterEncoding={3}", this.server, this.port, this.database, DB_ENCODING);
 	}
+
+	public String getServer() {
+		return server;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getDatabase() {
+		return database;
+	}
 }
