@@ -37,7 +37,7 @@ public class DefaultUserManager implements UserManager {
     @Override
     public void register(User newUser) throws UserValidationException {
         if(!newUser.isNew()) {
-            throw new RuntimeException("User already exists, use save method for updates!");
+            throw new RuntimeException("User object is not new, use save method for updates!");
         }
 
         newUser.validate();

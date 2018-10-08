@@ -1,10 +1,10 @@
-# KIV/PIA Labs Example Application Project
+# KIV/PIA Labs - Spring Intro project
 
-Empty project with configured servlets and JPA, ready for creating a sample application.
+Sample project with initial Spring framework configuration.
 
 ## Steps
 
-1. Check the project configuration - *pom.xml*, *persistence.xml*, *web.xml*. You should be well-acquainted with those by now.
+1. Check the project configuration - *pom.xml*, *web.xml*. You should be well-acquainted with those by now.
 2. What is dependency injection (DI)? What is inversion of control(IoC)? Check this great [article](http://www.martinfowler.com/articles/injection.html) by [Martin Fowler](http://www.martinfowler.com/)
 3. Check DI implementation on the servlet layer in *org.danekja.edu.pia.web* packages. 
 3. Application logic - where is it?
