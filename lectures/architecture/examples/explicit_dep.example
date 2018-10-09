@@ -36,7 +36,7 @@ class BetterDatePrinter {
     this.out = System.out;
   }
 
-  public String printDate(Instant date) {
+  public void printDate(Instant date) {
     out.println(df.format(date));
   }
 
