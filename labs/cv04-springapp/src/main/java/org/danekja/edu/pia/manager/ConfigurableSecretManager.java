@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
  * @author Jakub Danek
  */
 @Service
-@PreAuthorize("authenticated")
+//This is a bug, when the annotation is commented-out, we dont have access to the method protected!
+//commented out just for demonstration purposes
+//@PreAuthorize("authenticated")
 public class ConfigurableSecretManager implements SecretManager {
 
     @Value("${secret.value}")

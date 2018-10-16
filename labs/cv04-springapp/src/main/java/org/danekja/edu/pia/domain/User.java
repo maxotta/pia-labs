@@ -1,17 +1,12 @@
 package org.danekja.edu.pia.domain;
 
-import java.util.Collection;
-import java.util.Collections;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Entity representing application User.
@@ -20,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author Jakub Danek
  */
-@Entity
-@Table(name = "danekja_exampleapp_simple_user")
 public class User extends BaseObject implements UserDetails {
     /**
      * Login, unique
@@ -58,31 +51,26 @@ public class User extends BaseObject implements UserDetails {
      */
 
     @Override
-    @Transient
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
-    @Transient
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    @Transient
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    @Transient
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    @Transient
     public boolean isEnabled() {
         return true;
     }
@@ -91,7 +79,6 @@ public class User extends BaseObject implements UserDetails {
     ########### MAPPINGS #####################
      */
 
-    @Column(unique = true)
     @Override
     public String getUsername() {
         return username;

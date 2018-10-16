@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Jakub Danek
  */
-@WebServlet("/secret/vip")
+@WebServlet({"/secret/vip", "/public/vip"})
 public class SecretServlet extends AbstractServlet {
 
     private SecretManager secretManager;

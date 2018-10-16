@@ -14,7 +14,11 @@
 </c:if>
 
 <h1>Login</h1>
+<!-- Note that we dont have /login URL mapped anywhere in our application, Spring automatically
+    creates the controller -->
 <form action="login" method="post">
+    <!-- Part of Spring security mechanism of protection against CSRF attacks, we will
+        talk more about this during the respective lab -->
     <sec:csrfInput/>
     <sec:csrfMetaTags/>
     <label for="username">Login:&nbsp;</label>
