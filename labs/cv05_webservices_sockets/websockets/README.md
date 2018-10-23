@@ -7,11 +7,32 @@ Lab demonstrating simple use of WebSockets using Spring implementation.
 This example has been created for a Internet Application Programming (KIV/PIA) labs at the Department of Computer Science,
 University of West Bohemia in Pilsen, Czech Republic.
 
+## Tasks
+
+In this lab, you are given a working application which represents a very simple chat.
+
+* Explore server implementation: *org.danekja.edu.pia.core.chat.ChatHandler*
+* Explore client application: *webapp/websocket-test.html*
+
+Run the server as usual, then open the websocket-test.html in two browser tabs and
+try to send a few messages.
+
+### Task 1: "User (dis)connected" messages
+
+Extend server functionality so that all connected users are notified when a user (dis)connects.
+
+### Task 2: List of connected users
+
+Extend client functionality so that it displays list of connected users somewhere on the screen.
+
+
 ## Some Reading
 
-[Principles](http://enterprisewebbook.com/ch8_websockets.html)
-[Some ranting with useful description how it works](http://lucumr.pocoo.org/2012/9/24/websockets-101/)
-[Spring Docs](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html)
+* [Principles](http://enterprisewebbook.com/ch8_websockets.html)
+
+* [Some ranting with useful description how it works](http://lucumr.pocoo.org/2012/9/24/websockets-101/)
+
+* [Spring Docs](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html)
 
 ## License
 
