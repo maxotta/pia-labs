@@ -162,7 +162,9 @@ public class JpaExamples {
 
         beginTransaction();
         User u1 = userDao.findOne("roletestuser");
-        rollbackTransaction();
+        commitTransaction();
+        //close entity manager cache
+        em.close();
 
         for (Role r : u1.getRoles()) {
             System.out.println(r.getName());
@@ -184,7 +186,7 @@ public class JpaExamples {
         for (Role r : u1.getRoles()) {
             System.out.println(r.getName());
         }
-        rollbackTransaction();
+        commitTransaction();
     }
 
     /**
@@ -202,6 +204,7 @@ public class JpaExamples {
         userDao.save(u);
         commitTransaction();
 
+        //CASCADE
         //put breakpoint here and check db
         u.setAddress(null);
         beginTransaction();
@@ -214,6 +217,7 @@ public class JpaExamples {
         userDao.save(u);
         commitTransaction();
 
+        //ORPHAN REMOVAL
         //put breakpoint here and check db
         beginTransaction();
         userDao.delete(u.getPK());

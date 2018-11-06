@@ -102,7 +102,7 @@ All annotations are from the *javax.persistence* package!
     
 ### Run Examples
 
-1. Open [PhpMyAdmin]() in browser, login with credentials **pia**:**pia**.
+1. Open [PhpMyAdmin](https://students.kiv.zcu.cz/phpmyadmin) in browser, login with credentials **pia**:**pia**.
 2. Return to project, uncomment *Example 1* in the **App** class and run it.
 3. Check the result in phpMyAdmin interface.
 4. Comment the *Example 1*.
@@ -161,13 +161,13 @@ First we need to annotate additional entities.
     
 Now we need to mark User associations properly.
 
-1. Annotate *address* field of the **User** entity.
+1. Annotate *address* field of the **User** entity (remove the `@Transactional` annotation).
     ```
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     public Address getAddress() {
     ```
 
-1. Annotate *roles* field of the **User** entity.
+1. Annotate *roles* field of the **User** entity  (remove the `@Transactional` annotation).
     ```
     @ManyToMany
     @JoinTable(name = "danekja_user_roles", joinColumns = @JoinColumn(name = "user", referencedColumnName = "username"),
