@@ -1,8 +1,8 @@
 package org.danekja.edu.pia.dao;
 
-import java.util.Set;
-
 import org.danekja.edu.pia.domain.Role;
+
+import java.util.Set;
 
 /**
  * DAO interface for the Role entity

@@ -1,11 +1,10 @@
 package org.danekja.edu.pia.dao.jpa;
 
-import java.io.Serializable;
-
-import javax.persistence.EntityManager;
-
 import org.danekja.edu.pia.dao.GenericDao;
 import org.danekja.edu.pia.domain.IEntity;
+
+import javax.persistence.EntityManager;
+import java.io.Serializable;
 
 /**
  * JPA implementation of the GenericDao interface

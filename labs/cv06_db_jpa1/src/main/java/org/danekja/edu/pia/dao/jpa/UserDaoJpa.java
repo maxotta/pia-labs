@@ -1,9 +1,9 @@
 package org.danekja.edu.pia.dao.jpa;
 
-import javax.persistence.EntityManager;
-
 import org.danekja.edu.pia.dao.UserDao;
 import org.danekja.edu.pia.domain.User;
+
+import javax.persistence.EntityManager;
 
 /**
  * JPA implementation of the UserDao interface

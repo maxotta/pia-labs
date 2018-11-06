@@ -1,11 +1,10 @@
 package org.danekja.edu.pia.dao.jpa;
 
-import java.util.Set;
-
-import javax.persistence.EntityManager;
-
 import org.danekja.edu.pia.dao.RoleDao;
 import org.danekja.edu.pia.domain.Role;
+
+import javax.persistence.EntityManager;
+import java.util.Set;
 
 /**
  * JPA implementation of the RoleDao interface

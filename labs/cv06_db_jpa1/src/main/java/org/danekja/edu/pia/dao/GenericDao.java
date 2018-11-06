@@ -1,8 +1,8 @@
 package org.danekja.edu.pia.dao;
 
-import java.io.Serializable;
-
 import org.danekja.edu.pia.domain.IEntity;
+
+import java.io.Serializable;
 
 /**
  * Base interface for DAOs, providing CRUD operations.

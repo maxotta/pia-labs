@@ -1,10 +1,9 @@
 package org.danekja.edu.pia.domain;
 
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import javax.persistence.Transient;
 
 /**
  * Date: 26.9.15

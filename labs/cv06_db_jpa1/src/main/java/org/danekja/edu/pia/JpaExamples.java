@@ -1,16 +1,14 @@
 package org.danekja.edu.pia;
 
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.EntityManager;
-
 import org.danekja.edu.pia.dao.RoleDao;
 import org.danekja.edu.pia.dao.UserDao;
 import org.danekja.edu.pia.domain.AccountState;
 import org.danekja.edu.pia.domain.Address;
 import org.danekja.edu.pia.domain.Role;
 import org.danekja.edu.pia.domain.User;
+
+import javax.persistence.EntityManager;
+import java.util.Date;
 
 /**
  * Set of examples demonstrating work with JPA entity manager.
