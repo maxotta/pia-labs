@@ -25,12 +25,13 @@ select * from pia_example_01 where username = "testuser1" AND password = PASSWOR
 
 # Incorrect password:
 user='testuser1'
-pwd='pwd1'
+pwd='pwd2'
 
 select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('pwd2');
 
 # SQL Injection
 user='testuser1'
-pwd='0') OR ABS(1)
+pwd='0') OR ABS(1) AND username = "testuser1"
 
-select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('0') OR ABS(1);
+select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('0') OR ABS(1) AND username = "testuser1";
+select * from pia_example_01 where username = "testuser1" AND password = PASSWORD('0') OR ABS(1) AND username = "testuser2";

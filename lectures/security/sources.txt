@@ -1,0 +1,3 @@
+untrusted.png: https://support.mozilla.org
+man-in-the-middle-attack.png: https://securebox.comodo.com/ssl-sniffing/man-in-the-middle-attack/
+mitm-steps.gif: https://www.veracode.com/security/man-middle-attack
