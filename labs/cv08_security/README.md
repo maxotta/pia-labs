@@ -85,6 +85,7 @@ An attacker attempts to execute his own javascript in your browser.
 ## Some Reading
 
 [Top 10 Vulnerabilities by OWASP](https://securityintelligence.com/the-10-most-common-application-attacks-in-action/)
+
 [XSS Details](https://excess-xss.com/)
 
 ## License
