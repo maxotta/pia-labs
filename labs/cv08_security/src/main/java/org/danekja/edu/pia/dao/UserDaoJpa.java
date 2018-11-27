@@ -51,7 +51,7 @@ public class UserDaoJpa extends GenericDaoJpa<User> implements UserDao {
     @Override
     public boolean authenticate(final String username, final String password) throws Exception {
         //demonstration of SQL injection
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pia", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://students.kiv.zcu.cz:3306/pia", "pia", "pia");
 
         //NOTE THAT DUE TO PASSWORD HASHING, THIS CODE WILL NOT ALLOW USER TO LOGIN WITH CORRECT CREDENTIALS.
         //SQL INJECTION WORKS THOUGH, SO USER CAN LOG-IN WITH THAT. GOOD ENOUGH.
