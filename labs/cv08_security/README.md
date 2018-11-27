@@ -19,13 +19,17 @@ unwanted pages.
 * Check the Route servlet in the project. Run the application and try to access the following URL:
 
 ```
-http://localhost:8080/example-app-spring/route?where=http://zcu.cz
+http://localhost:8080/route?where=http://zcu.cz
 ```
 
 * Such URL may be sent e.g. by email and user may easily miss it is actually malicious
 
 #### Protection
 * do not use the actual URLs as input parameters. Have e.g. a set of location names ("login", "homepage", "account") and let the application to map those values to the actual URLs.
+
+#### Task
+
+1. Reimplement Route so that you can redirect to registration page without allowing anyone to misuse your router.
 
 ### Injection
 
@@ -44,11 +48,15 @@ Allows attacker to execute malicious code in your application. E.g. SQL.
 An attacker takes advantage of you being logged into a page to send his own requests there on your behalf (e.g. transfer money from your bank account to his).
 
 * Check the SecretMoneyServlet in the webapp package.
-* Start the application and login as any user.
+* Switch login URL in index.jsp from "/customLogin" to "/login" (to get rid of the that SQL injection attack example and get
+working authentication)
+* Start the application
+* Open the csrfattack.html in the src/main/webapp folder. Click the Win Money button.
+* Login as any user.
 * Open the csrfattack.html in the src/main/webapp folder in the same browser as the one you used to log into the application.
 * Click the Win Money button.
 * Check system console for logs from SercretMoneyServlet
-* Note that even the button clicking could be made automatically via JavaScript, hence you might be completely unaware of what happened.
+* Note that even the button clicking can be made automatically via JavaScript, therefore you might be completely unaware of what had just happened.
 
 ### Protection
 
@@ -61,11 +69,7 @@ Now let's try a solution in Spring Security:
 * Go to applicationContext.xml and change `<security:csrf disabled=true/>` to `<security:csrf/>`
 * Check register.jsp and index.jsp forms and their `<sec:csrfInput/>`
 
-## Configuration
-
-* Wrong server configuration may put the whole application security useless. What if the server allows browsing of all files in the system? -> The attacker can e.g. download all database files, stored certificates, etc.
-* Default username and passwords
-* Leaving debugging options on in production (display system details to the attacker)
+Please note that this default configuration protects against CSRF attacks on all methods but GET, OPTIONS, TRACE, HEAD.
 
 ## Cross-Site Scripting (XSS)
 
@@ -79,8 +83,11 @@ An attacker attempts to execute his own javascript in your browser.
 
 ### Protection
 
-* input validation and escaping (ensure whatever input user gives, it is never executed when displayed in the browser)
-* HttpOnly header on the cookie - prevent's client-side code to access the cookie value. Optional feature, browsers must support it.
+1. input validation and escaping (ensure whatever input user gives, it is never executed when displayed in the browser)
+    * comment-out the `req.setAttribute("post", postDao.getPosts().get(0));` line in SecretServlet
+    * uncomment the `req.setAttribute("post", Encode.forHtml(postDao.getPosts().get(0)));` line in SecretServlet
+    * restart the application and check result
+1. HttpOnly header on the cookie - prevent's client-side code to access the cookie value. Optional feature, browsers must support it.
 
 ## Some Reading
 

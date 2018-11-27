@@ -1,17 +1,16 @@
 package org.danekja.edu.pia.domain;
 
-import java.util.Collection;
-import java.util.Collections;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Entity representing application User.
@@ -21,8 +20,11 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author Jakub Danek
  */
 @Entity
-@Table(name = "danekja_exampleapp_simple_user")
+@Table(name = User.TABLE_NAME)
 public class User extends BaseObject implements UserDetails {
+
+    public static final String TABLE_NAME = "danekja_websec_user";
+
     /**
      * Login, unique
      */

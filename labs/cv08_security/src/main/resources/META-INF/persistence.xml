@@ -5,19 +5,20 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
+            <!-- JDBC Connection configuration -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pia"/>
 
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-
-            <property name="hibernate.connection.password" value="pia"/>
-            <property name="hibernate.connection.username" value="pia"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://students.kiv.zcu.cz:3306/pia"/>
-
+            <!-- Hibernate-specific configuration -->
+            <!-- WARNING - the following line clean the whole database on each application start!!! -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
             <property name="hibernate.validator.apply_to_ddl" value="true" />
 
-            <property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
+            <!-- Hibernate-C3P0 configuration -->
+            <property name="connection.provider_class" value="org.hibernate.c3p0.internal.C3P0ConnectionProvider"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="20"/>
             <property name="hibernate.c3p0.timeout" value="300"/>

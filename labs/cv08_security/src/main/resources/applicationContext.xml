@@ -39,7 +39,7 @@
     <security:http authentication-manager-ref="authManager">
         <security:cors configuration-source-ref="corsSource"/>
         <!-- this needs to be enabled to protect yourselves from CSRF-->
-        <security:csrf disabled="true"/>
+        <security:csrf />
         <!-- redirect to /secret/vip after login if no other secured page had been requested before-->
         <security:form-login login-page="/" default-target-url="/secret/vip"/>
         <security:intercept-url pattern="*" access="permitAll"/>

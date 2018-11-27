@@ -14,7 +14,7 @@
 </c:if>
 
 <h1>Login</h1>
-<form action="login" method="post">
+<form action="/login" method="post">
     <sec:csrfInput/>
     <sec:csrfMetaTags/>
     <label for="username">Login:&nbsp;</label>

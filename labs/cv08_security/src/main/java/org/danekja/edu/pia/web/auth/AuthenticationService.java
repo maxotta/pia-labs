@@ -1,13 +1,20 @@
 package org.danekja.edu.pia.web.auth;
 
-import javax.servlet.http.HttpSession;
-
 import org.danekja.edu.pia.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
 
 /**
  * Wrapper around HttpSession providing authentication functionality.
+ *
+ * NOTE: THIS CLASS IS HERE ONLY FOR PURPOSE OF DEMONSTRATING SQL INJECTION ATTACK.
+ * USE STANDARD SPRING SECURITY AUTHENTICATION MECHANISM IN REAL APPLICATIONS!
  *
  * Date: 26.11.15
  *
@@ -36,7 +43,12 @@ public class AuthenticationService {
     public boolean authenticate(HttpSession session, String username, String password) throws Exception {
         boolean authenticated = userManager.authenticate(username, password);
 
+        /*
+         * NOTE: THIS CLASS IS HERE ONLY FOR PURPOSE OF DEMONSTRATING SQL INJECTION ATTACK.
+         * USE STANDARD SPRING SECURITY AUTHENTICATION MECHANISM IN REAL APPLICATIONS!
+         */
         if(authenticated) {
+            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, password, Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))));
             session.setAttribute(USER, username);
             return true;
         }

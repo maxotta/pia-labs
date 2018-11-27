@@ -1,26 +1,18 @@
 package org.danekja.edu.pia.dao;
 
-import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
-
 import org.danekja.edu.pia.domain.User;
-import org.hibernate.Session;
-import org.hibernate.jdbc.Work;
+import org.danekja.edu.pia.utils.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * Date: 26.11.15
@@ -30,8 +22,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoJpa extends GenericDaoJpa<User> implements UserDao {
 
-    public UserDaoJpa() {
+    private Encoder encoder;
+
+    @Autowired
+    public UserDaoJpa(Encoder encoder) {
         super(User.class);
+        this.encoder = encoder;
     }
 
     @Override
@@ -54,11 +50,14 @@ public class UserDaoJpa extends GenericDaoJpa<User> implements UserDao {
 
     @Override
     public boolean authenticate(final String username, final String password) throws Exception {
-        //demonstration of SQL injection, try putting
-        Connection connection = DriverManager.getConnection("jdbc:mysql://students.kiv.zcu.cz:3306/pia", "pia", "pia");
+        //demonstration of SQL injection
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pia", "root", "root");
 
-        // try using ' OR 1=1--' as pwd  (including the ')
-        String sql = "SELECT count(*) FROM danekja_exampleapp_simple_user WHERE `username` = '" + username + "' AND `password` = '" + password + "'";
+        //NOTE THAT DUE TO PASSWORD HASHING, THIS CODE WILL NOT ALLOW USER TO LOGIN WITH CORRECT CREDENTIALS.
+        //SQL INJECTION WORKS THOUGH, SO USER CAN LOG-IN WITH THAT. GOOD ENOUGH.
+
+        // try using ' OR 1=1--' as pwd  (including the ' characters)
+        String sql = "SELECT count(*) FROM " + User.TABLE_NAME + " WHERE `username` = '" + username + "' AND `password` = '" + password + "'";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         rs.next();

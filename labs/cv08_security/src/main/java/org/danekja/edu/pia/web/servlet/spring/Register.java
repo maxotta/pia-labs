@@ -1,17 +1,16 @@
 package org.danekja.edu.pia.web.servlet.spring;
 
-import java.io.IOException;
-import java.util.Objects;
+import org.danekja.edu.pia.domain.User;
+import org.danekja.edu.pia.domain.UserValidationException;
+import org.danekja.edu.pia.manager.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.danekja.edu.pia.domain.User;
-import org.danekja.edu.pia.domain.UserValidationException;
-import org.danekja.edu.pia.manager.UserManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Servlet handling user registration requests.
@@ -54,7 +53,7 @@ public class Register extends AbstractServlet {
 
         try {
             userManager.register(new User(username, password));
-            resp.sendRedirect("");  //not perfect, user should get a message registration was successful!
+            resp.sendRedirect("/");  //not perfect, user should get a message registration was successful!
         } catch (UserValidationException e) {
             errorDispatch(e.getMessage(), req, resp);
         }
