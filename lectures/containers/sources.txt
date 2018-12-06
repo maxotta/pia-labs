@@ -1,0 +1,10 @@
+containers-101.png: https://cloud.google.com/containers/
+pid_namespace.png: https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
+mount_namespace.png: https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
+dockerfile.png: https://docs.docker.com/storage/storagedriver/#images-and-layers
+container-layers.jpg: https://docs.docker.com/storage/storagedriver/#images-and-layers
+sharing-layers.jpg: https://docs.docker.com/storage/storagedriver/#images-and-layers
+types-of-mounts-volume.png: https://docs.docker.com/storage/volumes/
+bridge2.png: https://success.docker.com/article/networking
+cluster.png: https://docs.microsoft.com/en-us/dotnet/standard/containerized-lifecycle-architecture/design-develop-containerized-apps/orchestrate-high-scalability-availability
+services-diagram.png: https://docs.docker.com/engine/swarm/how-swarm-mode-works/services
