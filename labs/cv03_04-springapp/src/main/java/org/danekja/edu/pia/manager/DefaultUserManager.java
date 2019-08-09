@@ -1,7 +1,5 @@
 package org.danekja.edu.pia.manager;
 
-import javax.transaction.Transactional;
-
 import org.danekja.edu.pia.dao.UserDao;
 import org.danekja.edu.pia.domain.User;
 import org.danekja.edu.pia.domain.UserValidationException;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @author Jakub Danek
  */
 @Service
-@Transactional
 public class DefaultUserManager implements UserManager {
 
     private UserDao userDao;

@@ -1,9 +1,5 @@
 package org.danekja.edu.pia.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -13,8 +9,6 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author Jakub Danek
  */
-@Entity
-@Table(name = "danekja_exampleapp_simple_user")
 public class User extends BaseObject {
     /**
      * Login, unique
@@ -39,7 +33,7 @@ public class User extends BaseObject {
 
     /**
      * Validates that user instance is currently in a valid state.
-     * @throws UserValidationException in case the instance is not in valid state.
+     * @throws {@link UserValidationException} in case the instance is not in valid state.
      */
     public void validate() throws UserValidationException {
         if(StringUtils.isBlank(username)) throw new UserValidationException("Username is a required field");
@@ -49,8 +43,6 @@ public class User extends BaseObject {
     /*
     ########### MAPPINGS #####################
      */
-
-    @Column(unique = true)
     public String getUsername() {
         return username;
     }
