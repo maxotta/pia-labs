@@ -1,11 +1,33 @@
 # KIV/PIA Labs Example Application Project
 
 Spring implementation of a simple web application. Provides overview of what kind of application
-students should be able to create after passing the course.
+students should be able to create after passing the course. This implementation does not follow
+the latest trends in Spring application development as it is meant to demonstrate **principles**, not
+technology. Please consult Spring / Spring Boot documentation for current guidelines.
 
 1. Get acquainted with contents of the pom.xml file.
 1. Build the project using ```mvn install``` and examine contents of the created archive.
-1. Run the project using ```mvn tomcat7:run-war```
+
+After code examination, try to start the application.
+1. First we need database, we will use Docker for that. Details of how docker works will be exaplained
+    in separate lab.
+    ```
+     docker run -ti -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:5.7
+    ```
+1. Run the built application
+    ```
+    mvn cargo:run
+    ```
+1. To rebuild and update deployment, run
+    ```
+    mvn install
+    ```    
+    and restart the cargo process.
+1. Interesting URLs:
+    * http://localhost:8080/ (login page)
+    * http://localhost:8080/register (registration page)
+    * http://localhost:8080/secret/vip (not so secure page) 
+    
 
 ##Importing Maven Project into Your IDE
 

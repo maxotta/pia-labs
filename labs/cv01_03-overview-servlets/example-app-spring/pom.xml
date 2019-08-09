@@ -5,18 +5,17 @@
     <artifactId>example-app-spring</artifactId>
     <packaging>war</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>KIV/PIA Labs Example Overview</name>
+    <name>CV 01: KIV/PIA Labs Example Overview</name>
     <url>https://courseware.zcu.cz/portal/studium/courseware/kiv/pia</url>
 
+    <parent>
+        <groupId>cz.kiv.zcu.pia</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
     <properties>
-        <commons.lang3.version>3.3.2</commons.lang3.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
-        <javax.jstl.version>1.2</javax.jstl.version>
-        <javax.servlet.version>3.1.0</javax.servlet.version>
-        <jpa.version>1.0.0.Final</jpa.version>
-        <junit.version>3.8.1</junit.version>
-        <mysql.connector.version>5.1.34</mysql.connector.version>
-        <spring.version>4.1.3.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -26,24 +25,20 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons.lang3.version}</version>
         </dependency>
 
         <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
 
@@ -52,14 +47,12 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>${javax.jstl.version}</version>
         </dependency>
 
         <!-- Persistence -->
@@ -67,25 +60,21 @@
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>${jpa.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
+            <artifactId>hibernate-core</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
-            <version>${hibernate.version}</version>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.version}</version>
         </dependency>
 
         <!-- Testing -->
@@ -93,7 +82,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -122,37 +110,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
             </plugin>
 
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
             </plugin>
 
-
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
-                    <configuration>
-                        <!-- This configuration sets base context path for the application.
-                            With this setting, the application will be available at http://localhost:8080/
-                            whereas without it, the default URL would be http://localhost:8080/example-app-spring/
-                        -->
-                        <path>/</path>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 </project>
