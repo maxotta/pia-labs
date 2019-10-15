@@ -11,7 +11,7 @@
 
     <!-- Web Sockets -->
 
-    <websocket:handlers>
+    <websocket:handlers allowed-origins="*">
         <websocket:mapping path="/ws/chat" handler="chatHandler"/>
     </websocket:handlers>
 
